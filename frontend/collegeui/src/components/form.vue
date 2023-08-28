@@ -29,14 +29,14 @@
             <p v-if="error">{{ error }}</p>
             </div>
             <section class="actionBtns">
-                <button class="btn btn-primary" ref="submit" type="submit">Login</button>
+                <button class="formBtn btn btn-primary" ref="submit" type="submit">Submit</button>
             </section>
         </form>
         
         <teleport to="body">
             <div class="modal" v-if="isOpen">
                 <modal
-                    @close="isOpen = false"
+                    @close="modalClosed()"
                     :form-data="formData"
                     title="Hello"
                     msg="World"
@@ -54,6 +54,7 @@
 
 <script>
     import AddStudent from '../services/addStudent'
+    import getAllStudents from '../services/getAllStudents';
     export default {
         data() {
         return {
@@ -74,12 +75,33 @@
                 if(this.formData.firstName != '' && this.formData.lastName != '' && this.formData.email != '' && this.formData.password != ''){
                     e.preventDefault();
                     this.submitForm();
+                    this.isOpen = true;
                 }
             },
             async submitForm(){
                 await (AddStudent.addStudent(this.formData))
-                this.isOpen = true;
-                console.log(this.formData);
+            },
+            async fetchData() {
+                let data = (await getAllStudents.getStudents()).data
+                console.log(data);
+                let result = [];
+                data.forEach(entry => {
+                    result.push({"firstName":entry.firstName,"surname":entry.lastName,"address":entry.address,"phone":entry.phoneNumber,"email":entry.email})
+                });
+                let studentData = Object.values(result).map(obj => obj);
+                localStorage.setItem('studentData', JSON.stringify(studentData));
+            },
+            modalClosed(){
+                this.isOpen = false;
+                this.formData = {
+                    firstName: '',
+                    lastName: '',
+                    address: '',
+                    phone: '',
+                    email: '',
+                    password:''
+                }
+                this.fetchData();
             }
         }
     };
@@ -93,8 +115,8 @@
     width:100%;
     padding: 0.5rem;
     border-radius: 5px;
-    border: 1px solid #838383;
-    background-color: #9d9d9d;
+    border: 1px solid #a2a6ff;
+    background-color: #6159b9;
     color: #fff;
     opacity: .8;
     position: relative; 
@@ -107,6 +129,17 @@
 }
 .actionBtns{
     align-self: flex-end;
+}
+.formBtn{
+    background-color: rgba(0,0,0,0);
+    border-color: #fff;
+    width:8rem;
+    padding:0.5rem;
+    margin-top: 1rem;
+}
+.formBtn:hover{
+    background-color: #fff;
+    color:#6159b9;
 }
 .modal{
     position: absolute;

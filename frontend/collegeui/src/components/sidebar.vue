@@ -13,16 +13,18 @@
 
 <style scoped>
     .sidebar{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         width:18%;
         max-width: 300px;
         height:100%;
-        background-color: white;
         border-radius: 5px;
         padding:0.5rem;
         text-align:center;
         font-size: 20px;
-
-        background-color: #9d9d9d;
+        border: 1px solid #a2a6ff;
+        background-color: #6159b9;
         color: #fff;
         opacity: .8;
     }
@@ -37,7 +39,7 @@
         width:calc(100% - 1rem);
         padding:0.5rem;
         margin-bottom: 2rem;
-        border-bottom: 1px solid rgba(82,82,89,.32);
+        border-bottom: 1px solid rgba(162, 166, 255, .32);
     }
     .sidebar-link{
         padding:1rem 0;
@@ -51,5 +53,43 @@
     .sidebar-link p {
         margin: 0;
         display: inline-block;
+    }
+    .sidebar-link:hover{
+        transform: scale(110%);
+    }
+
+    @media (max-width: 800px){
+        .sidebar{
+            height: auto;
+            width:100%;
+            max-width: 100%;
+            padding: 0 0 0.25rem 0;
+            margin-bottom: 1rem;
+        }
+        
+        .pageTitle{
+            width:100%;
+            padding: 0 0 0.5rem 0;
+            margin-bottom: 0.5rem;
+        }
+        .sidebar-link{
+            padding:0.25rem 0;
+        }
+    }
+
+     @media (max-width :1300px){
+        .sidebar{
+            font-size: 16px;
+        }
+        .siderbar * {
+            font-size: inherit;
+        }
+        .sidebar h3{
+            font-size: 20px;
+        }
+        .pageLogo{
+            height: 6rem;
+            width:auto;
+        }
     }
 </style>

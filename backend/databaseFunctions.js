@@ -3,7 +3,8 @@ const bcrypt = require('bcrypt');
 
 // Save student data to the database
 async function saveStudentData(data) {
-  const { firstName, lastName, address, phoneNumber, email, password } = data;
+  console.log(data);
+  const { firstName, lastName, address, phone, email, password } = data;
 
   // Hash the password before saving it
   const hashedPassword = await bcrypt.hash(password, 10);
@@ -12,7 +13,7 @@ async function saveStudentData(data) {
     INSERT INTO students (firstName, lastName, address, phoneNumber, email, password)
     VALUES (?, ?, ?, ?, ?, ?)
   `;
-  database.db.run(query, [firstName, lastName, address, phoneNumber, email, hashedPassword], (err) => {
+  database.db.run(query, [firstName, lastName, address, phone, email, hashedPassword], (err) => {
     if (err) {
       console.error('Error saving student data:', err);
     } else {
@@ -23,7 +24,7 @@ async function saveStudentData(data) {
 
 // Retrieve all student data from the database
 function getAllStudentsData(callback) {
-  const query = 'SELECT * FROM students';
+  const query = 'SELECT firstName,lastName,address,phoneNumber,email FROM students';
   database.db.all(query, (err, rows) => {
     if (err) {
       console.error('Error fetching all students data:', err);
