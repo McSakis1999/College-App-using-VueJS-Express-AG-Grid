@@ -3,7 +3,6 @@ const bcrypt = require('bcrypt');
 
 // Save student data to the database
 async function saveStudentData(data) {
-  console.log(data);
   const { firstName, lastName, address, phone, email, password } = data;
 
   // Hash the password before saving it

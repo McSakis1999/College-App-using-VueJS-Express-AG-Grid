@@ -3,7 +3,7 @@
         <img class="pageLogo" src="../assets/logoPg.webp">
         <h3 class="pageTitle">AICOLLEGE</h3>
         <div @click="this.$router.push('/')" class="sidebar-link"><img class="logo" src="../assets/user-plus-solid.svg"><p>Add Student</p></div>
-        <div @click="this.$router.push('/students')" class="sidebar-link"><img class="logo" src="../assets/address-book-regular.svg"><p>Student List</p></div>
+        <div @click="this.$router.push('/students')" class="sidebar-link"><img class="logo" src="../assets/address-book-regular.svg"><p>Student Catalog</p></div>
     </div>
 </template>
 
@@ -18,7 +18,7 @@
         align-items: center;
         width:18%;
         max-width: 300px;
-        height:100%;
+        /* height:100%; */
         border-radius: 5px;
         padding:0.5rem;
         text-align:center;
@@ -73,7 +73,7 @@
             margin-bottom: 0.5rem;
         }
         .sidebar-link{
-            padding:0.25rem 0;
+            padding:0.5rem 0;
         }
     }
 

@@ -26,20 +26,18 @@
             <label for="password">Password:</label>
             <input type="password" class="form-control" placeholder="Password*" aria-label="Password" aria-describedby="basic-addon1" id="password" v-model="formData.password" required>
             </div>
-            <p v-if="error">{{ error }}</p>
+            <p class="errorMsg" v-if="error">* {{ error }}</p>
             </div>
             <section class="actionBtns">
-                <button class="formBtn btn btn-primary" ref="submit" type="submit">Submit</button>
+                <button @click ="response" class="formBtn btn btn-primary" ref="submit" type="submit">Submit</button>
             </section>
         </form>
         
         <teleport to="body">
             <div class="modal" v-if="isOpen">
                 <modal
-                    @close="modalClosed()"
+                    @close="modalClosed()" 
                     :form-data="formData"
-                    title="Hello"
-                    msg="World"
                 />
             </div>
         </teleport>
@@ -71,26 +69,34 @@
         };
         },
         methods: {
+            response(){
+                if(this.formData.firstName == '' || this.formData.lastName == '' || this.formData.email == '' || this.formData.password != ''){
+                    this.error = "Please fill out all the required fields!"
+                }
+            },
             handleSubmitForm(e){
                 if(this.formData.firstName != '' && this.formData.lastName != '' && this.formData.email != '' && this.formData.password != ''){
                     e.preventDefault();
-                    this.submitForm();
-                    this.isOpen = true;
+                    this.submitForm(); // Submit form and store data to db
+                    this.isOpen = true; // Open confirmation modal after form submition
                 }
             },
+            // Send data to the backend for storing
             async submitForm(){
                 await (AddStudent.addStudent(this.formData))
             },
+            // Retrieve fresh data when modal closes (new entry is stored) to localstorage
             async fetchData() {
                 let data = (await getAllStudents.getStudents()).data
-                console.log(data);
                 let result = [];
+                // format data in a way ag grid rowData undestands
                 data.forEach(entry => {
                     result.push({"firstName":entry.firstName,"surname":entry.lastName,"address":entry.address,"phone":entry.phoneNumber,"email":entry.email})
                 });
                 let studentData = Object.values(result).map(obj => obj);
                 localStorage.setItem('studentData', JSON.stringify(studentData));
             },
+            //Reset form and retrieve fresh data
             modalClosed(){
                 this.isOpen = false;
                 this.formData = {
@@ -101,6 +107,7 @@
                     email: '',
                     password:''
                 }
+                this.error = '';
                 this.fetchData();
             }
         }
@@ -110,51 +117,55 @@
 </script>
 
 <style scoped>
-.formContainer{
-    height: 100%;
-    width:100%;
-    padding: 0.5rem;
-    border-radius: 5px;
-    border: 1px solid #a2a6ff;
-    background-color: #6159b9;
-    color: #fff;
-    opacity: .8;
-    position: relative; 
-}
-.loginForm{
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-.actionBtns{
-    align-self: flex-end;
-}
-.formBtn{
-    background-color: rgba(0,0,0,0);
-    border-color: #fff;
-    width:8rem;
-    padding:0.5rem;
-    margin-top: 1rem;
-}
-.formBtn:hover{
-    background-color: #fff;
-    color:#6159b9;
-}
-.modal{
-    position: absolute;
-    top:0;
-    left:0;
-    background-color: rgba(0,0,0,0.1);
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.modal > div{
-    background-color: #fff;
-    padding: 50px;
-    border-radius: 10px;
-}
+    .formContainer{
+        height: 100%;
+        width:100%;
+        padding: 0.5rem;
+        border-radius: 5px;
+        border: 1px solid #a2a6ff;
+        background-color: #6159b9;
+        color: #fff;
+        opacity: .8;
+        position: relative; 
+    }
+    .loginForm{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .errorMsg{
+        padding:1rem 0.5rem;
+    
+    }
+    .actionBtns{
+        align-self: flex-end;
+    }
+    .formBtn{
+        background-color: rgba(0,0,0,0);
+        border-color: #fff;
+        width:8rem;
+        padding:0.5rem;
+        margin-top: 1rem;
+    }
+    .formBtn:hover{
+        background-color: #fff;
+        color:#6159b9;
+    }
+    .modal{
+        position: absolute;
+        top:0;
+        left:0;
+        background-color: rgba(0,0,0,0.1);
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .modal > div{
+        background-color: #fff;
+        padding: 50px;
+        border-radius: 10px;
+    }
 </style>

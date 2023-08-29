@@ -36,11 +36,11 @@
         },
       };
     },
+    // Fill the table with data stored in localstorage
     created(){
       const storedData = localStorage.getItem('studentData');
       if(storedData){
         this.gridOptions.rowData = JSON.parse(storedData)
-        console.log(this.gridOptions);
       }
     }
   };

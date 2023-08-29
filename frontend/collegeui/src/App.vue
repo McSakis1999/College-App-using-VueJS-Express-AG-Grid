@@ -19,7 +19,7 @@ import sidebar from './components/sidebar.vue';
   .wrapper{
     display: flex;
     width:100vw;
-    height: 100vh;
+    min-height: 100vh;
     padding:1rem;
     background-color: #8e93d6;
   }

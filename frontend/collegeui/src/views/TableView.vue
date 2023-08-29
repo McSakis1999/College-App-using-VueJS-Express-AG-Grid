@@ -1,10 +1,7 @@
 <template>
     <div class="mainContent">
-      <div class="header"><h2>Students</h2></div>
-      <grid 
-      :studentData="this.studentData"
-      >
-      
+      <div class="header"><h2>Student Catalog</h2></div>
+      <grid >
       </grid>
     </div>
 </template>
@@ -22,19 +19,7 @@
       return {
         studentData: [],
       };
-  }
-  ,
-  methods: {
-    async fetchData() {
-      let data = (await getAllStudents.getStudents()).data
-      let result = [];
-      data.forEach(entry => {
-        result.push({"firstName":entry.firstName,"surname":entry.lastName,"address":entry.address,"phone":entry.phoneNumber,"email":entry.email})
-      });
-      this.studentData = Object.values(result).map(obj => obj);
-      console.log(this.studentData)
     }
-  }
   }
 </script>
 
@@ -47,7 +32,7 @@
         flex-direction: column;
         gap:1rem;
         width:100%;
-        height:100%;
+        /* height:100%; */
         padding-left: 1rem;
   }
     .header{

@@ -6,7 +6,7 @@
 
         <ul>
             <li><strong>First Name:</strong> {{ formData.firstName }}</li>
-            <li><strong>Last Name:</strong> {{ formData.lastName }}</li>
+            <li><strong>Surname:</strong> {{ formData.lastName }}</li>
             <li><strong>Mobile Phone:</strong> {{ formData.phone }}</li>
             <li><strong>Email:</strong> {{ formData.email }}</li>
             <li><strong>Password:</strong> {{ formData.password }}</li>
@@ -19,11 +19,9 @@
 <script setup>
     
     defineProps({
-        title: String,
-        msg: String,
         formData: Object
     })
-
+    // send an emit when close button is pressed so form component knows when modals is closed
     defineEmits("close")
 </script>
 
