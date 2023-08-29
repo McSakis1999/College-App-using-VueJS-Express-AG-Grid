@@ -23,24 +23,6 @@
 - Express: Επικοινωνία endpoints
 - Bcrypt: Κρυπτογράφηση κωδικών
 
-Δομή Βάσης:
-
-` `CREATE TABLE IF NOT EXISTS students (
-
-`      `id INTEGER PRIMARY KEY AUTOINCREMENT,
-
-`      `firstName TEXT,
-
-`      `lastName TEXT,
-
-`      `address TEXT,
-
-`      `phoneNumber TEXT,
-
-`      `email TEXT,
-
-`      `password TEXT
-
 **Front-end**
 
 Για την δημιουργία του front-end  χρησιμοποιήθηκαν τα παρακάτω εργαλεία:
@@ -56,10 +38,14 @@
 Έπειτα πλοηγηθείτε στο app **cd frontend** , **cd collegeui** και στην συνέχεια τρέξτε την εντολή **npm run dev**.
 
 Ακολουθώντας το σύνδεσμο που θα εμφανιστεί στο terminal θα μπορείτε να δείτε την σελίδα.
+![0](https://github.com/McSakis1999/collegeForm/assets/58091482/186aedfd-7b41-43c3-b9ed-c11e6595ef44)
+
 
 ### <a name="_32p9polchym3"></a>**Πλοήγηση**
 
 Πλοηγηθείτε στην εφαρμογή μέσω του μενού πλοήγησης ή των συνδέσμων που παρέχονται σε κάθε σελίδα. Χρησιμοποιήστε το μενού για να μεταβείτε σε διάφορες ενότητες της εφαρμογής.
+
+![1](https://github.com/McSakis1999/collegeForm/assets/58091482/d33019f2-1dab-4553-aa84-c9002d3f4144)
 
 ## <a name="_s3xqrkx15fjw"></a>**3. Προσθήκη Φοιτητή**
 ### <a name="_6kn6viip4q9x"></a>**Συμπλήρωση Πληροφοριών Φοιτητή**
@@ -82,6 +68,7 @@ Email\*
 Κωδικός πρόσβασης\*
 
 Όπου \* αποτελεί υποχρεωτικό πεδίο.
+![2](https://github.com/McSakis1999/collegeForm/assets/58091482/ca2ece25-9b32-4d04-909b-5d7d7fe25d9a)
 
 ### <a name="_yrtgx2u2l7jl"></a>**Υποβολή της Φόρμας**
 Αφού συμπληρώσετε τις πληροφορίες, κάντε κλικ στο κουμπί "Submit".
@@ -89,12 +76,14 @@ Email\*
 Το σύστημα θα ελέγξει τα απαιτούμενα πεδία και θα εμφανίσει ένα μήνυμα σφάλματος αν χρειαστεί.
 
 Εάν ο έλεγχος είναι επιτυχής, θα εμφανιστεί ένα παράθυρο επιβεβαίωσης που θα προβάλλει τα δεδομένα που εισάγατε.
+<img src="https://user-images.githubusercontent.com/58091482/264150435-09251694-fc91-490f-9b56-e190e925c23a.jpg" alt="3" style="width:300px;height:auto;">
 
 ## <a name="_ch1kml3sfytk"></a>**4. Προβολή Φοιτητών**
 ### <a name="_euchppood7kc"></a>**Πρόσβαση στη Σελίδα Φοιτητών**
 Μεταβείτε στον σύνδεσμο "Student Catalog" στο μενού πλοήγησης.
 
 Η σελίδα Φοιτητών θα εμφανίσει έναν πίνακα με τις πληροφορίες των φοιτητών.
+![4](https://github.com/McSakis1999/collegeForm/assets/58091482/b461e153-e44e-44f9-bde5-524c665320f4)
 
 
 
@@ -110,6 +99,10 @@ Email\*
 
 Τα δεδομένα στον πίνακα θα διατηρηθούν ακόμη και μετά την ανανέωση της σελίδας, παρέχοντας μια συνεπή προβολή των πληροφοριών των φοιτητών. Για να επιτευχθεί αυτό, διατηρούνται αντίγραφα στο localstorage της εφαρμογης.
 ### <a name="_679wip4wabhx"></a>**5. Σελίδα για κινητά**
+
+<img src="https://user-images.githubusercontent.com/58091482/264148086-0905923a-8217-4e8e-bb41-504026df5f67.png" alt="Vite-App-mobile2" style="width:300px; height:auto;">
+
+<img src="https://user-images.githubusercontent.com/58091482/264148122-b1b92f3c-b9e8-411a-a61f-3becfb9be7f8.png" alt="Vite-App-mobile" style="width:300px; height:auto;">
 
 
 
