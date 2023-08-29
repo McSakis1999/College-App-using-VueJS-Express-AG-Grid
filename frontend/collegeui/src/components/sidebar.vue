@@ -1,7 +1,7 @@
 <template>
     <div class="sidebar">
         <img class="pageLogo" src="../assets/logoPg.webp">
-        <h3 class="pageTitle">AICOLLEGE</h3>
+        <h3 class="pageTitle animate-charcter">AICOLLEGE</h3>
         <div @click="this.$router.push('/')" class="sidebar-link"><img class="logo" src="../assets/user-plus-solid.svg"><p>Add Student</p></div>
         <div @click="this.$router.push('/students')" class="sidebar-link"><img class="logo" src="../assets/address-book-regular.svg"><p>Student Catalog</p></div>
     </div>
@@ -56,6 +56,35 @@
     }
     .sidebar-link:hover{
         transform: scale(110%);
+    }
+
+    .animate-charcter
+    {
+        text-transform: uppercase;
+        background-image: linear-gradient(
+            -225deg,
+            #231557 0%,
+            #44107a 29%,
+            #ff1361 67%,
+            #cbc401 100%
+        );
+        background-size: auto auto;
+        background-clip: border-box;
+        background-size: 200% auto;
+        color: #fff;
+        background-clip: text;
+        text-fill-color: transparent;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: textclip 5s linear infinite;
+        display: inline-block;
+        
+    }
+
+    @keyframes textclip {
+    to {
+        background-position: 200% center;
+    }
     }
 
     @media (max-width: 800px){
