@@ -70,7 +70,7 @@
         },
         methods: {
             response(){
-                if(this.formData.firstName == '' || this.formData.lastName == '' || this.formData.email == '' || this.formData.password != ''){
+                if(this.formData.firstName == '' || this.formData.lastName == '' || this.formData.email == '' || this.formData.password == ''){
                     this.error = "Please fill out all the required fields!"
                 }
             },
@@ -78,12 +78,17 @@
                 if(this.formData.firstName != '' && this.formData.lastName != '' && this.formData.email != '' && this.formData.password != ''){
                     e.preventDefault();
                     this.submitForm(); // Submit form and store data to db
-                    this.isOpen = true; // Open confirmation modal after form submition
                 }
             },
             // Send data to the backend for storing
             async submitForm(){
-                await (AddStudent.addStudent(this.formData))
+                try {
+                    // try to submit data to backend
+                    await AddStudent.addStudent(this.formData);
+                    this.isOpen = true; // Open confirmation modal after form submition
+                } catch (error) {
+                   this.error = 'Could not connect to database, form was not submitted!'
+                }
             },
             // Retrieve fresh data when modal closes (new entry is stored) to localstorage
             async fetchData() {
